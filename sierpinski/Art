@@ -1,0 +1,67 @@
+import java.awt.Color;
+
+public class Art {
+    private static int xcoords = 0; // value of xcoord of largest arc of spiral
+
+    // calculates nth fibonacci value
+    private static int fibonacci(int n) {
+        int[] fib = new int[100];
+        if (n == 0) {
+            fib[n] = 1;
+        }
+        else if (n == 1) {
+            fib[n] = 1;
+        }
+        else if (fib[n] == 0) {
+            fib[n] = fibonacci(n - 1) + fibonacci(n - 2);
+        }
+        return fib[n];
+    }
+
+    // finds index of given fibonacci number
+    private static int fibIndex(int n) {
+        int i = 0;
+        while (n != fibonacci(i)) {
+            i++;
+        }
+        return i;
+    }
+
+    // draws spiral
+    private static void spiral(int radius, int size, double x, double y) {
+        for (int i = radius; i > 1; i -= size * 2) {
+            StdDraw.arc(x, y, i, 0, 180);
+            StdDraw.arc(x - size, y, i - size, 180,
+                        360);
+        }
+        double lastArcLength = radius % size;
+        for (double i = 2; i < lastArcLength; i += 4) {
+            StdDraw.arc(x - size + 2, y, lastArcLength - i, 0, 180);
+            StdDraw.arc(x - size, y, lastArcLength - 2 - i, 180, 360);
+        }
+    }
+
+    // draws recursive spiral pattern of n order, where proceeding spiral
+    // increases in size, following a fibonacci sequence size order
+    private static void spirals(int n, int radius, int size, int x, int y) {
+        if (n % 2 == 0) {
+            StdDraw.setPenColor(Color.pink);
+        }
+        else {
+            StdDraw.setPenColor(Color.red);
+        }
+        if (xcoords > 100 || n == 0) return;
+        spiral(radius, size, x, y);
+        xcoords += fibonacci(fibIndex(size) - 1);
+        spirals(n - 1, size, fibonacci(fibIndex(size) - 1), xcoords,
+                y);
+    }
+
+    // calls spirals of order n, where n is an integer command-line argument
+    public static void main(String[] args) {
+        int order = Integer.parseInt(args[0]);
+        StdDraw.setScale(-100, 100);
+        spirals(order, 89, 55, 0, 0);
+
+    }
+}
