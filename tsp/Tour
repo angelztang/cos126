@@ -1,0 +1,196 @@
+public class Tour {
+
+
+    // circularly linked list of nodes
+    private class Node {
+        // declares point p
+        private Point p;
+        // the next node
+        private Node next;
+
+        // constructs node from point pt
+        public Node(Point pt) {
+            this.p = pt;
+            this.next = null;
+        }
+    }
+
+    private Node start; // first node
+    private int size; // number of points in tour
+
+    // creates an empty tour
+    public Tour() {
+        start = null;
+        size = 0;
+    }
+
+    // creates the 4-point tour a->b->c->d->a (for debugging)
+    public Tour(Point a, Point b, Point c, Point d) {
+        Node aNode = new Node(a);
+        Node bNode = new Node(b);
+        Node cNode = new Node(c);
+        Node dNode = new Node(d);
+        start = aNode;
+        aNode.next = bNode;
+        bNode.next = cNode;
+        cNode.next = dNode;
+        dNode.next = aNode;
+        size = 4;
+    }
+
+    // returns the number of points in this tour
+    public int size() {
+        return size;
+    }
+
+    // returns the length of this tour
+    public double length() {
+        double totalDistance = 0;
+
+        if (start == null || size < 2)
+            return 0.0;
+
+        Node current = start.next, previous = start;
+        while (current != start) {
+            totalDistance += previous.p.distanceTo(current.p);
+            previous = current;
+            current = current.next;
+        }
+        totalDistance += previous.p.distanceTo(current.p);
+
+        return totalDistance;
+    }
+
+    // returns a string representation of this tour
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (start == null)
+            return "";
+
+        Node current = start;
+        do {
+            sb.append(current.p.toString() + "\n");
+            current = current.next;
+        } while (current != start);
+
+        return sb.toString();
+    }
+
+    // draws this tour to standard drawing
+    public void draw() {
+        if (size == 0)
+            return;
+        Node current = start.next, previous = start;
+        if (size < 2 && size > 0) {
+            previous.p.drawTo(previous.p);
+            return;
+        }
+        while (current != start) {
+            // previous.p.draw();
+            previous.p.drawTo(current.p);
+            previous = current;
+            current = current.next;
+        }
+        previous.p.drawTo(current.p); // draw the last line
+    }
+
+    // insert node at position
+    private void insertAt(Node node, int pos) {
+        if (pos < 0 || (size > 0 && pos > size - 1))
+            throw new IllegalArgumentException("index out of bounds.");
+
+        size++;
+        if (start == null) {
+            start = node;
+            start.next = start;
+            return;
+        }
+
+        Node current = start;
+        int i = 0;
+
+        do {
+            if (i == pos) {
+                node.next = current.next;
+                current.next = node;
+                break;
+            }
+            i++;
+            current = current.next;
+        } while (current != start);
+    }
+
+    // inserts p using the nearest neighbor heuristic
+    public void insertNearest(Point p) {
+        Node newNode = new Node(p), current = start;
+        double minDistance = Double.POSITIVE_INFINITY;
+        int minDisPos = 0;
+        for (int j = 0; j < size; j++) {
+            double dist = current.p.distanceTo(newNode.p);
+            if (dist < minDistance) {
+                minDisPos = j;
+                minDistance = dist;
+            }
+            current = current.next;
+        }
+        insertAt(newNode, minDisPos);
+    }
+
+    // inserts p using the smallest increase heuristic
+    public void insertSmallest(Point p) {
+        Node newNode = new Node(p);
+        Node current = start;
+        double minDistance = Double.POSITIVE_INFINITY;
+        int minDisPos = 0;
+        for (int j = 0; j < size; j++) {
+            double deltaDistance = current.p.distanceTo(newNode.p) +
+                    newNode.p.distanceTo(current.next.p)
+                    - current.p.distanceTo(current.next.p);
+            if (deltaDistance < minDistance) {
+                minDisPos = j;
+                minDistance = deltaDistance;
+            }
+            current = current.next;
+        }
+        insertAt(newNode, minDisPos);
+    }
+
+    // tests this class by directly calling all constructors and instance methods
+    public static void main(String[] args) {
+        // define 4 points that are the corners of a tour
+        Point a = new Point(100.0, 100.0);
+        Point b = new Point(500.0, 100.0);
+        Point c = new Point(500.0, 500.0);
+        Point d = new Point(100.0, 500.0);
+
+        // create the tour a -> b -> c -> d -> a
+        Tour testTour1 = new Tour(a, b, c, d);
+
+        // print the size to standard output
+        StdOut.printf("Test #1 - check size - should be %d\n", 4);
+        StdOut.printf("**** Number of points is %d\n", testTour1.size());
+        StdOut.printf("Test #2 - check length - should be %.2f\n", 1600.00);
+        StdOut.printf("************ length is %.2f\n", testTour1.length());
+        StdOut.println("Test #3 - check toString");
+        StdOut.println(testTour1);
+        StdOut.println("Test #4 - check draw");
+        StdDraw.setXscale(0, 600);
+        StdDraw.setYscale(0, 600);
+        testTour1.draw();
+        Tour testTour2 = new Tour();
+        StdOut.print("Pause - press the enter key to continue");
+        StdIn.readChar();
+        StdOut.println("Test #5 - check empty tour");
+        StdOut.printf("          - check size - should be %d\n", 0);
+        StdOut.printf("          *** size is %d\n", testTour2.size());
+        StdOut.printf("         - check length - should be %.2f\n", 0.0);
+        StdOut.printf("          *** length is %.2f\n", testTour2.length());
+        StdOut.println("         - check toString - should be empty");
+        StdOut.println(testTour2);
+        StdOut.println("         - check draw");
+        testTour2.insertNearest(new Point(400, 400));
+        testTour2.insertSmallest(new Point(200, 400));
+        StdDraw.clear(); // clear the old drawing
+        testTour2.draw();
+    }
+}
