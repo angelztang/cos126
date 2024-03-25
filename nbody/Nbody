@@ -1,0 +1,89 @@
+public class NBody {
+    // Simulates the motion of n particles (bodies) in the plane,
+    // mutually affected by gravitational forces, and animates the results
+    public static void main(String[] args) {
+        double duration = Double.parseDouble(args[0]);
+        double increment = Double.parseDouble(args[1]);
+        StdAudio.playInBackground("2001.wav");
+        // double[] yes = StdAudio.read("2001.wav");
+        double grav = 6.67e-11;
+        int n = StdIn.readInt();
+        double radius = StdIn.readDouble();
+        double[] xc = new double[n];
+        double[] yc = new double[n];
+        double[] vx = new double[n];
+        double[] vy = new double[n];
+        double[] mass = new double[n];
+        double[] fx = new double[(n)];
+        double[] fy = new double[(n)];
+        String[] image = new String[n];
+
+        for (int i = 0; i < n; i++) {
+            xc[i] = StdIn.readDouble();
+            yc[i] = StdIn.readDouble();
+            vx[i] = StdIn.readDouble();
+            vy[i] = StdIn.readDouble();
+            mass[i] = StdIn.readDouble();
+            image[i] = StdIn.readString();
+        }
+
+        StdDraw.setXscale(-radius, radius);
+        StdDraw.setYscale(-radius, radius);
+        StdDraw.enableDoubleBuffering();
+
+        for (double i = 0.0; i < duration; i += increment) {
+            StdDraw.picture(0, 0, "starfield.jpg");
+            for (int j = 0; j < n; j++) {
+                fx[j] = 0;
+                fy[j] = 0;
+                for (int k = 0; k < n; k++) {
+                    if (k != j) {
+                        double r = Math.sqrt(Math.pow((xc[k] - xc[j]), 2) +
+                                                     Math.pow((yc[k] - yc[j]), 2));
+                        double force = (grav * mass[k] * mass[j]) / (r * r);
+                        fx[j] += force * (xc[k] - xc[j]) / r;
+                        fy[j] += force * (yc[k] - yc[j]) / r;
+                    }
+                }
+                // vx[j] = vx[j] + ((fx[j] / mass[j]) * increment);
+                // vy[j] = vy[j] + ((fy[j] / mass[j]) * increment);
+                // xc[j] = xc[j] + (vx[j] * increment);
+                // yc[j] = yc[j] + (vy[j] * increment);
+                // StdDraw.picture(xc[j], yc[j], image[j]);
+            }
+            // vx[j] = vx[j] + ((fx[j] / mass[j]) * increment);
+            // vy[j] = vy[j] + ((fy[j] / mass[j]) * increment);
+            // xc[j] = xc[j] + (vx[j] * increment);
+            // yc[j] = yc[j] + (vy[j] * increment);
+            // StdDraw.picture(xc[j], yc[j], image[j]);
+            for (int j = 0; j < n; j++) {
+                vx[j] = vx[j] + ((fx[j] / mass[j]) * increment);
+                vy[j] = vy[j] + ((fy[j] / mass[j]) * increment);
+                xc[j] = xc[j] + (vx[j] * increment);
+                yc[j] = yc[j] + (vy[j] * increment);
+                // StdDraw.picture(xc[j], yc[j], image[j]);
+            }
+            for (int j = 0; j < n; j++) {
+                StdDraw.picture(xc[j], yc[j], image[j]);
+            }
+            StdDraw.show();
+            StdDraw.pause(20);
+        }
+        StdOut.printf("%d\n", n);
+        StdOut.printf("%.2e\n", radius);
+        for (int i = 0; i < n; i++) {
+            StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                          xc[i], yc[i], vx[i], vy[i], mass[i], image[i]);
+        }
+        // StdDraw.clear(StdDraw.LIGHT_GRAY);
+        //
+        // // draw ball on the screen
+        // StdDraw.picture(rx, ry, "TennisBall.png");
+        //
+        // // display and pause for 20 ms
+        // StdDraw.show();  // double buffer is enabled
+        // StdDraw.pause(20);
+
+    }
+}
+
