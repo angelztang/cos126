@@ -1,0 +1,97 @@
+public class MarkovModel {
+    private int order;     // order of model
+    private ST<String, Integer> st1 = new ST<String, Integer>(); // ST for
+    // one-arg freq()
+    private ST<String, ST<String, Integer>> st2 =
+            new ST<String, ST<String, Integer>>(); // ST for 2-arg freq()
+
+    // creates a Markov model of order k based on the specified text
+    public MarkovModel(String text, int k) {
+        order = k;
+        String nText = text + text;
+        for (int i = 0; i < text.length(); i++) {
+            String j = nText.substring(i, i + k);
+            int count = freq(j);
+            st1.put(j, count + 1);
+            st2.put(j, new ST<String, Integer>());
+        }
+
+        for (int i = 0; i < text.length(); i++) {
+            String j = nText.substring(i, i + k);
+            char nChar = nText.charAt((i + k));
+            int count = freq(j, nChar);
+            st2.get(j).put(nChar + "", count + 1);
+        }
+        // if (k == 0) {
+        //     order = 1;
+        // }
+    }
+
+    // returns the order of the model (also known as k)
+    public int order() {
+        return order;
+    }
+
+    // returns a String representation of the model (more info below)
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (String key : st2) {
+            result.append(key + ": ");
+            for (String chars : st2.get(key)) {
+                result.append(chars + " " + st2.get(key).get(chars) + " ");
+            }
+            result.append("\n");
+        }
+        return result.toString();
+    }
+
+    // returns the # of times 'kgram' appeared in the input text
+    public int freq(String kgram) {
+        if (kgram.length() != order)
+            throw new IllegalArgumentException("kgram is not of length k");
+        if (!st1.contains(kgram))
+            return 0;  // if word is not in ST
+        else
+            return st1.get(kgram);
+    }
+
+    // returns the # of times 'c' followed 'kgram' in the input text
+    public int freq(String kgram, char c) {
+        if (kgram.length() != order)
+            throw new IllegalArgumentException("kgram is not of length k");
+        if (!st1.contains(kgram) || !st2.get(kgram).contains(c + ""))
+            return 0;  // if word is not in ST
+        else
+            return st2.get(kgram).get(c + "");
+    }
+
+    // returns a random character, chosen with weight proportional to the
+    // number of times each character followed 'kgram' in the input text
+    public char random(String kgram) {
+        if (kgram.length() != order)
+            throw new IllegalArgumentException("kgram is not of length k");
+        if (!st1.contains(kgram)) {
+            throw new IllegalArgumentException("kgram is not in text");
+        }
+        double[] freq = new double[st2.get(kgram).size()];
+        char[] c = new char[st2.get(kgram).size()];
+        int i = 0;
+        for (String chars : st2.get(kgram)) {
+            c[i] = chars.charAt(0);
+            freq[i] += (double) st2.get(kgram).get(chars) / st1.get(kgram);
+            i++;
+        }
+        return c[StdRandom.discrete(freq)];
+    }
+
+    // tests all instance methods to make sure they're working as expected
+    public static void main(String[] args) {
+        String text1 = "banana";
+        MarkovModel model1 = new MarkovModel(text1, 2);
+        StdOut.println("freq(\"an\", 'a')    = " + model1.freq("an", 'a'));
+        StdOut.println("freq(\"na\")         = " + model1.freq("na"));
+        StdOut.println(model1.order());
+        StdOut.println(model1.toString());
+        StdOut.println(model1.random("an"));
+    }
+}
