@@ -1,8 +1,9 @@
  <img src="https://www.cs.princeton.edu/courses/archive/spring20/cos226/images/princeton-shield.gif" alt=princeton_shield align=left height=210 />  
 
- ## COS 126 - Computer Science: An Interdisciplinary Approach<br></br>
+ ## COS 126 - Computer Science: An Interdisciplinary Approach<br>
  
  This repository contains my Java programming assignments that I completed while taking Princeton's COS 126.
+ <br></br>
  <br></br>
  <br></br>
  ### Course Information
