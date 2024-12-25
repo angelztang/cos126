@@ -42,7 +42,7 @@
       </a>       
     </td>
     <td>
-      <div align="center"> Plot a Sierpinski triangle; and plot a recursive pattern of your own design </div>
+      <div align="center"> Create a library of geometric transforms on polygons; plot a Sierpinski triangle; and plot a recursive pattern of your own design </div>
     </td>
     <td>
       <div align="center"> recursive and dynamic programming techniques </div>
@@ -75,56 +75,67 @@
       <div align="center"> Simulate the plucking of a guitar string using the Karplus–Strong algorithm </div>
     </td>
     <td>
-      <div align="center"> binary search trees, 2-3 trees, red-black trees, B-trees, kd-trees </div>
+      <div align="center"> Karplus-Strong algorithm, ring buffer, cyclic buffer management </div>
     </td>
+  </tr>
+   </tr>
+   <tr>
+    <td>
+      <div align="center">
+        <a href="https://github.com/angelztang/cos126/tree/master/markov"> Assignment 5 </a>
+      </div>
+        <img src="./markov/logo.png" width = 300>
+      </a>       
+    </td>
+    <td>
+      <div align="center"> Use a Markov chain to create a statistical model of a piece of English text and simulate the Markov chain to generate stylized pseudo-random text </div>
+    </td>
+    <td>
+      <div align="center"> symbol tables, natural language procrssing, Markov chains </div>
+    </td>
+  <tr>
+    <td>
+      <div align="center">
+        <a href="https://github.com/angelztang/cos226/tree/master/tsp"> Assignment 6 </a>
+      </div>
+        <img src="./tsp/logo.png" width = 300>
+      </a>       
+    </td>
+    <td>
+      <div align="center"> Implement two greedy heuristics to find good (but not optimal) solutions to the traveling salesperson problem </div>
+    </td>
+    <td>
+      <div align="center"> nearest insertion heuristic, smallest increase heuristic, circularly linked list </div>
+    </td>
+  </tr>
   </tr>
    <tr>
     <td>
       <div align="center">
-        <a href="https://github.com/angelztang/cos226/tree/master/wordnet"> Assignment 5 </a>
+        <a href="https://github.com/angelztang/cos126/tree/master/hamming"> Assignment 7 </a>
       </div>
-      <a href="https://www.cs.princeton.edu/courses/archive/spring24/cos226/assignments/wordnet/specification.php">
-        <img src="./wordnet/logo.png" width = 300>
+        <img src="./hamming/logo.png" width = 300>
       </a>       
     </td>
     <td>
-      <div align="center"> Build a <a href="https://wordnet.princeton.edu"> WordNet </a> object with built-in search methods </div>
+      <div align="center"> Write a TOY program to encode data using Hamming codes and a TOY program to correct encoded data that has been corrupted </div>
     </td>
     <td>
-      <div align="center"> hash tables, depth-first search, breadth-first search, topological sort, minimum spanning trees, Kruskal's algorithm, Prim's algorithm </div>
+      <div align="center"> error correcting codes, machine language </div>
     </td>
-  </tr>
    <tr>
     <td>
       <div align="center">
-        <a href="https://github.com/angelztang/cos226/tree/master/seam"> Assignment 6 </a>
+        <a href="https://github.com/angelztang/cos226/tree/master/nbody"> Assignment 8 </a>
       </div>
-      <a href="https://www.cs.princeton.edu/courses/archive/spring24/cos226/assignments/seam/specification.php">
-        <img src="./seam/logo.png" width = 300>
+        <img src="./nbody/logo.png" width = 300>
       </a>       
     </td>
     <td>
-      <div align="center"> Content-aware image resizing API </div>
+      <div align="center"> Simulate the motion of n particles, mutually affected by gravitational forces, and animate the results </div>
     </td>
     <td>
-      <div align="center"> Bellman-Ford algorithm, Dijkstra's algorithm, Ford-Fulkerson algorithm, MinCuts, MaxFlows </div>
-    </td>
-  </tr>
-    </tr>
-   <tr>
-    <td>
-      <div align="center">
-        <a href="https://github.com/angelztang/cos226/tree/master/fraud"> Assignment 7 </a>
-      </div>
-      <a href="https://www.cs.princeton.edu/courses/archive/spring24/cos226/assignments/fraud/specification.php">
-        <img src="./fraud/logo.png" width = 300>
-      </a>       
-    </td>
-    <td>
-      <div align="center"> Machine learning model to detect fraudulent credit card transactions </div>
-    </td>
-    <td>
-      <div align="center"> k-means clustering, dimensionality reduction, decision stumps, AdaBoost algorithm, weighted voting </div>
+      <div align="center"> dfs, brownian motion, thresholding </div>
     </td>
   </tr>
 </table>
