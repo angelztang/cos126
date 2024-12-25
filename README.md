@@ -1,16 +1,15 @@
  <img src="https://www.cs.princeton.edu/courses/archive/spring20/cos226/images/princeton-shield.gif" alt=princeton_shield align=left height=210 />  
 
- ## COS 226 - Algorithms and Data Structures<br></br>at Princeton University  
+ ## COS 126 - Computer Science: An Interdisciplinary Approach<br></br>at Princeton University  
  
- This repository contains my Java programming assignments that I completed while taking [Princeton's COS 226](https://www.cs.princeton.edu/courses/archive/spring20/cos226/syllabus.php).
+ This repository contains my Java programming assignments that I completed while taking Princeton's COS 126.
  <br></br>
  <br></br>
  ### Course Information
- The course focuses on the implementation of various data structures and algorithms. It also concentrates on the time and space complexities of each of them.
- Topics covered can be found [here](https://www.cs.princeton.edu/courses/archive/spring24/cos226/lectures.php), but I'll abstract more on the material below.  
+ The course is an introduction to computer science in the context of scientific, engineering, and commercial applications. The course uses the Java programming language to introduce fundamental  programming concepts, including conditionals, loops, arrays, functions, and object-oriented programming. Additional topics include algorithms and data structures; theory of computing; hardware  and software systems; and machine learning.
  
  ### Java Assignments
- Most of the dependencies that I used are contained within the course's algs4.jar. This can be found, along with installation instructions, [at this link](https://algs4.cs.princeton.edu/code). The same link also has any needed java programs and libraries that may not be in the .JAR file. Note that I littered much of the code with block comments because
+ Most of the dependencies that I used are contained within the course's algs4.jar. This can be found, along with installation instructions, [at this link](https://algs4.cs.princeton.edu/code).   The same link also has any needed java programs and libraries that may not be in the .JAR file. Note that I littered much of the code with block comments because
  I wanted my logic to be explicit for my grader.
  
  <table style="width:100%">
@@ -22,62 +21,58 @@
   <tr>
     <td>
      <div align="center">
-       <a href="https://github.com/angelztang/cos226/tree/master/percolation"> Assignment 1 </a>
+       <a href="https://github.com/angelztang/cos126/tree/master/functions"> Assignment 1 </a>
      </div>
-     <a href="https://www.cs.princeton.edu/courses/archive/spring24/cos226/assignments/percolation/specification.php">
-       <img src="./percolation/logo.png" width = 300>
+       <img src="./functions/logo.png" width = 300>
      </a>
     </td>
     <td>
-      <div align="center"> Estimate the percolation threshold of a composite system </div>
+      <div align="center"> Implement and test a collection of functions, which manipulate audio and create an audio collage </div>
     </td>
     <td> 
-      <div align="center"> quick-union, weighted quick-union, Monte Carlo method </div>
+      <div align="center"> digital audio manipulation, passing arrays, array functions, audio collage creation, amplify, clamp, reverse, merge, mix, change speed </div>
     </td>
   </tr>
   <tr>
     <td>
       <div align="center">
-        <a href="https://github.com/angelztang/cos226/tree/master/queues"> Assignment 2 </a>
+        <a href="https://github.com/angelztang/cos126/tree/master/sierpinski"> Assignment 2 </a>
       </div>
-      <a href="https://www.cs.princeton.edu/courses/archive/spring24/cos226/assignments/queues/specification.php">
-        <img src="./queues/logo.png" width = 400>
+        <img src="./sierpinski/logo.png" width = 400>
       </a>       
     </td>
     <td>
-      <div align="center"> Create Deque and RandomizedQueue objects </div>
+      <div align="center"> Plot a Sierpinski triangle; and plot a recursive pattern of your own design </div>
     </td>
     <td>
-      <div align="center"> linked lists, stacks, queues, deques, Java iterators </div>
+      <div align="center"> recursive and dynamic programming techniques </div>
     </td>
   </tr>
    <tr>
     <td>
       <div align="center">
-        <a href="https://github.com/angelztang/cos226/tree/master/autocomplete"> Assignment 3 </a>
+        <a href="https://github.com/angelztang/cos126/tree/master/classifier"> Assignment 3 </a>
       </div>
-      <a href="https://www.cs.princeton.edu/courses/archive/spring24/cos226/assignments/autocomplete/specification.php">
-        <img src="./autocomplete/logo.png" width = 300>
+        <img src="./classifier/logo.png" width = 300>
       </a>       
     </td>
     <td>
-      <div align="center"> Autocomplete feature for user queries </div>
+      <div align="center"> Write a program to classify images using the perceptron algorithm </div>
     </td>
     <td>
-      <div align="center"> selection sort, insertion sort, binary search, mergesort, quicksort, Java comparators </div>
+      <div align="center"> perceptron algorithm, multi-layer perceptron, gradient descent, image classification, training and testing classifiers, error rate calculation </div>
     </td>
   </tr>
    <tr>
     <td>
       <div align="center">
-        <a href="https://github.com/angelztang/cos226/tree/master/kdtree"> Assignment 4 </a>
+        <a href="https://github.com/angelztang/cos126/tree/master/guitar"> Assignment 4 </a>
       </div>
-      <a href="https://www.cs.princeton.edu/courses/archive/spring24/cos226/assignments/kdtree/specification.php">
-        <img src="./kdtree/logo.png" width = 300>
+        <img src="./guitar/logo.png" width = 300>
       </a>       
     </td>
     <td>
-      <div align="center"> Create a 2D space partitioning binary search tree API </div>
+      <div align="center"> Simulate the plucking of a guitar string using the Karplus–Strong algorithm </div>
     </td>
     <td>
       <div align="center"> binary search trees, 2-3 trees, red-black trees, B-trees, kd-trees </div>
